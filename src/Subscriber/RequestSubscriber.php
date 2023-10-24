@@ -9,11 +9,11 @@ use Shopware\Core\PlatformRequest;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 
-final readonly class RequestSubscriber implements EventSubscriberInterface
+final class RequestSubscriber implements EventSubscriberInterface
 {
     public function __construct(
-        private AccessValidatorInterface $accessValidator,
-        private ResponseFactoryInterface $responseFactory,
+        private readonly AccessValidatorInterface $accessValidator,
+        private readonly ResponseFactoryInterface $responseFactory,
     ) {
     }
 

@@ -8,12 +8,12 @@ use Jeboehm\AccessProtection\Repository\UserRepositoryInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-final readonly class AccessValidatorService implements AccessValidatorInterface
+final class AccessValidatorService implements AccessValidatorInterface
 {
     public function __construct(
-        private ConfigValueRepository $configValueRepository,
-        private UserRepositoryInterface $userRepository,
-        private LoggerInterface $logger,
+        private readonly ConfigValueRepository $configValueRepository,
+        private readonly UserRepositoryInterface $userRepository,
+        private readonly LoggerInterface $logger,
     ) {
     }
 

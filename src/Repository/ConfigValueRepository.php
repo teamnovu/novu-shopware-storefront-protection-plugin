@@ -5,10 +5,10 @@ namespace Jeboehm\AccessProtection\Repository;
 
 use Shopware\Core\System\SystemConfig\SystemConfigService;
 
-final readonly class ConfigValueRepository
+final class ConfigValueRepository
 {
     public function __construct(
-        private SystemConfigService $systemConfigService
+        private readonly SystemConfigService $systemConfigService
     ) {
     }
 

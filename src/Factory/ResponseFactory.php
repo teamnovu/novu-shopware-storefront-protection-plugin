@@ -6,10 +6,10 @@ namespace Jeboehm\AccessProtection\Factory;
 use Jeboehm\AccessProtection\Repository\ConfigValueRepository;
 use Symfony\Component\HttpFoundation\Response;
 
-final readonly class ResponseFactory implements ResponseFactoryInterface
+final class ResponseFactory implements ResponseFactoryInterface
 {
     public function __construct(
-        private ConfigValueRepository $configValueRepository
+        private readonly ConfigValueRepository $configValueRepository
     ) {
     }
 

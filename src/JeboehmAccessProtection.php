@@ -5,6 +5,6 @@ namespace Jeboehm\AccessProtection;
 
 use Shopware\Core\Framework\Plugin;
 
-class JeboehmAccessProtection extends Plugin
+final class JeboehmAccessProtection extends Plugin
 {
 }

@@ -13,14 +13,14 @@ use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\OrFilter;
 use Shopware\Core\System\User\UserCollection;
 use Shopware\Core\System\User\UserEntity;
 
-final readonly class UserRepository implements UserRepositoryInterface
+final class UserRepository implements UserRepositoryInterface
 {
     /**
      * @param EntityRepository<UserCollection> $userRepository
      */
     public function __construct(
-        private EntityRepository $userRepository,
-        private ConfigValueRepository $configValueRepository,
+        private readonly EntityRepository $userRepository,
+        private readonly ConfigValueRepository $configValueRepository,
     ) {
     }
 
