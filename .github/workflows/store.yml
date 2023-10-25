@@ -8,7 +8,7 @@ on:
       - main
 
 env:
-  EXTENSION_NAME: platform-access-protection
+  EXTENSION_NAME: JeboehmAccessProtection
   SHOPWARE_CLI_ACCOUNT_EMAIL: ${{ secrets.ACCOUNT_USER }}
   SHOPWARE_CLI_ACCOUNT_PASSWORD: ${{ secrets.ACCOUNT_PASSWORD }}
 
