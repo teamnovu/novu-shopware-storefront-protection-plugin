@@ -29,8 +29,7 @@ final class UserRepository implements UserRepositoryInterface
         $criteria = new Criteria();
         $criteria->setLimit(1);
         $criteria->addFilter(
-            new EqualsFilter('username', $username),
-            new EqualsFilter('active', true),
+            new EqualsFilter('username', $username)
         );
 
         if (($roleIds = $this->configValueRepository->getRoleIds($salesChannelId)) !== []) {
