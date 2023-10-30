@@ -32,6 +32,7 @@
             <helpText lang="de-DE">Wenn keine Rolle ausgewählt wird, dürfen alle Rollen zugreifen.</helpText>
             <helpText>When no roles are selected, all roles will have access by default.</helpText>
             <entity>acl_role</entity>
+            <defaultValue>[]</defaultValue>
         </component>
 
         <component name="sw-tagged-field">
@@ -40,6 +41,7 @@
             <label lang="de-DE">IP-Adressen, die Zugriff auf die Storefront erhalten</label>
             <helpText lang="de-DE">Wenn die IP-Adresse des Besuchers übereinstimmt, wird keine Authentisierung verlangt.</helpText>
             <helpText>When the visitor's IP address matches, no authentication is required.</helpText>
+            <defaultValue>[]</defaultValue>
         </component>
     </card>
 </config>
