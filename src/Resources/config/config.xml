@@ -17,7 +17,20 @@
             <name>realm</name>
             <label>Information to display in the password dialog box</label>
             <label lang="de-DE">Informationen, die im Passwort-Dialogfeld angezeigt werden</label>
+            <helpText>
+                Some browsers won't display the realm anymore.
+            </helpText>
+            <helpText lang="de-DE">
+                Einige Browser zeigen den Realm nicht mehr an.
+            </helpText>
             <defaultValue>Password protected.</defaultValue>
+        </input-field>
+
+        <input-field>
+            <name>unauthorizedMessage</name>
+            <label>Message to display when the user is not authorized</label>
+            <label lang="de-DE">Nachricht, die angezeigt wird, wenn der Benutzer nicht autorisiert ist</label>
+            <defaultValue>Unauthorized</defaultValue>
         </input-field>
     </card>
 
@@ -29,18 +42,34 @@
             <name>aclRoles</name>
             <label>User roles that are allowed to access the storefront</label>
             <label lang="de-DE">Benutzerrollen, die Zugriff auf die Storefront erhalten</label>
-            <helpText lang="de-DE">Wenn keine Rolle ausgewählt wird, dürfen alle Rollen zugreifen.</helpText>
-            <helpText>When no roles are selected, all roles will have access by default.</helpText>
+            <helpText lang="de-DE">
+                Wenn keine Rolle ausgewählt wird, dürfen alle Rollen zugreifen.
+                Ansonsten dürfen nur Benutzer zugreifen, die eine der ausgewählten Rollen haben, oder Administratoren
+                sind.
+            </helpText>
+            <helpText>
+                When no roles are selected, all roles will have access by default.
+                Otherwise, only users with one of the selected roles or administrators will have access.
+            </helpText>
             <entity>acl_role</entity>
             <defaultValue>[]</defaultValue>
         </component>
 
         <component name="sw-tagged-field">
             <name>allowedIps</name>
-            <label>IP addresses that are allowed to access the storefront</label>
-            <label lang="de-DE">IP-Adressen, die Zugriff auf die Storefront erhalten</label>
-            <helpText lang="de-DE">Wenn die IP-Adresse des Besuchers übereinstimmt, wird keine Authentisierung verlangt.</helpText>
-            <helpText>When the visitor's IP address matches, no authentication is required.</helpText>
+            <label>IP addresses that are allowed to access the storefront without authentication</label>
+            <label lang="de-DE">IP-Adressen, die Zugriff auf die Storefront erhalten, ohne sich anzumelden</label>
+            <helpText lang="de-DE">
+                Wenn die IP-Adresse des Besuchers übereinstimmt, wird keine Authentisierung
+                verlangt.
+                Achtung: TRUSTED_PROXIES müssen in der .env-Datei konfiguriert werden.
+                Siehe Plugin-Dokumentation.
+            </helpText>
+            <helpText>
+                When the visitor's IP address matches, no authentication is required.
+                Attention: TRUSTED_PROXIES must be configured in the .env file.
+                See plugin documentation.
+            </helpText>
             <defaultValue>[]</defaultValue>
         </component>
     </card>

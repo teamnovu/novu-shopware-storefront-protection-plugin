@@ -9,6 +9,9 @@ build:
         paths:
           - var
           - .gitignore
+          - src/Resources/store
+          - .github
+          - .shopware-extension.yml
 
 store:
   availabilities:
