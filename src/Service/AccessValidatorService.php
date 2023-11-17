@@ -37,7 +37,7 @@ final class AccessValidatorService implements AccessValidatorInterface
         }
 
         try {
-            $this->userRepository->getUser($username, $password, $salesChannelId);
+            $this->userRepository->checkUser($username, $password, $salesChannelId);
 
             return true;
         } catch (\OutOfBoundsException $e) {

@@ -1,60 +1,51 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Jeboehm\AccessProtection\Repository;
 
-use Shopware\Core\Framework\Api\Context\SystemSource;
-use Shopware\Core\Framework\Context;
-use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
-use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsAnyFilter;
-use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
-use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\OrFilter;
-use Shopware\Core\System\User\UserCollection;
-use Shopware\Core\System\User\UserEntity;
+use Doctrine\DBAL\ArrayParameterType;
+use Doctrine\DBAL\Connection;
+use Shopware\Core\Framework\Uuid\Uuid;
 
 final class UserRepository implements UserRepositoryInterface
 {
-    /**
-     * @param EntityRepository<UserCollection> $userRepository
-     */
     public function __construct(
-        private readonly EntityRepository $userRepository,
+        private readonly Connection $connection,
         private readonly ConfigValueRepository $configValueRepository,
     ) {
     }
 
-    public function getUser(string $username, string $password, string $salesChannelId): UserEntity
+    public function checkUser(string $username, string $password, string $salesChannelId): void
     {
-        $criteria = new Criteria();
-        $criteria->setLimit(1);
-        $criteria->addFilter(
-            new EqualsFilter('username', $username)
-        );
+        $qb = $this->connection->createQueryBuilder();
+        $qb
+            ->select('u.password')
+            ->from('`user`', 'u')
+            ->andWhere($qb->expr()->eq('u.username', ':username'))
+            ->setMaxResults(1)
+            ->setParameter('username', $username);
 
         if (($roleIds = $this->configValueRepository->getRoleIds($salesChannelId)) !== []) {
-            $criteria->addAssociation('aclRoles');
-            $criteria->addFilter(
-                new OrFilter([
-                    new EqualsAnyFilter('aclRoles.id', $roleIds),
-                    new EqualsFilter('admin', true),
-                ])
-            );
+            $qb
+                ->leftJoin('u', '`acl_user_role`', 'r', 'u.id = r.user_id')
+                ->andWhere(
+                    $qb->expr()->orX(
+                        $qb->expr()->eq('u.admin', 1),
+                        $qb->expr()->in('r.acl_role_id', ':roleIds')
+                    )
+                )
+                ->setParameter('roleIds', Uuid::fromHexToBytesList($roleIds), ArrayParameterType::STRING);
         }
 
-        $user = $this->userRepository->search(
-            $criteria,
-            Context::createDefaultContext(new SystemSource())
-        )->first();
+        $userPassword = $qb->executeQuery()->fetchOne();
 
-        if ($user === null) {
+        if ($userPassword === false) {
             throw new \OutOfBoundsException(sprintf('User with username "%s" not found', $username));
         }
 
-        if (!password_verify($password, $user->getPassword())) {
+        if (!password_verify($password, $userPassword)) {
             throw new \OutOfBoundsException(sprintf('Wrong password for username "%s".', $username));
         }
-
-        return $user;
     }
 }

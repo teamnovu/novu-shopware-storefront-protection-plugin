@@ -7,5 +7,5 @@ use Shopware\Core\System\User\UserEntity;
 
 interface UserRepositoryInterface
 {
-    public function getUser(string $username, string $password, string $salesChannelId): UserEntity;
+    public function checkUser(string $username, string $password, string $salesChannelId): void;
 }
