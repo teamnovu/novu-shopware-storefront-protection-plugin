@@ -19,5 +19,6 @@ Configure the plugin in the plugin settings.
 Links:
 ------
 
+- [Shopware Store](https://store.shopware.com/jeboe28464820812f/storefront-zugangsschutz.html)
 - [GitHub Repository](https://github.com/jeboehm/platform-access-protection)
 - [Issues](https://github.com/jeboehm/platform-access-protection/issues)

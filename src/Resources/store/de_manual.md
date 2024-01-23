@@ -6,6 +6,7 @@ erklärt.
 
 Es können IP-Adressen konfiguriert werden, die immer Zugriff auf die Storefront haben,
 ohne sich authentifizieren zu müssen.
+Unterstützt werden IPv4 und IPv6. Es können auch Subnetzmasken oder IPv6-Prefixe angegeben werden.
 
 **Besonderheit bei der Verwendung eines Proxy-Servers oder eines Loadbalancers**
 Damit das IP-Whitelisting bei Verwendung eines zusätzlichen Reverse-Proxy-Servers korrekt

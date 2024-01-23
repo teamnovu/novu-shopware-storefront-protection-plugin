@@ -6,6 +6,7 @@ namespace Jeboehm\AccessProtection\Service;
 use Jeboehm\AccessProtection\Repository\ConfigValueRepository;
 use Jeboehm\AccessProtection\Repository\UserRepositoryInterface;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\HttpFoundation\IpUtils;
 use Symfony\Component\HttpFoundation\Request;
 
 final class AccessValidatorService implements AccessValidatorInterface
@@ -24,6 +25,12 @@ final class AccessValidatorService implements AccessValidatorInterface
         }
 
         $allowedIps = $this->configValueRepository->getAllowedIps($salesChannelId);
+
+        foreach ($allowedIps as $allowedIp) {
+            if (IpUtils::checkIp($request->getClientIp(), $allowedIp)) {
+                return true;
+            }
+        }
 
         if (\in_array($request->getClientIp(), $allowedIps, true)) {
             return true;

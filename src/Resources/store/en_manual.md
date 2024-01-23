@@ -6,6 +6,7 @@ there in detail.
 
 You can configure IP addresses that are always allowed to access the storefront,
 without the need to authenticate.
+IPv4 and IPv6 are supported. Subnet masks or IPv6 prefixes can also be specified.
 
 ***Be mindful when using a proxy server or load balancer***
 In order for the IP whitelisting to work correctly when using an additional reverse proxy server,
