@@ -12,7 +12,7 @@ jobs:
     uses: shopware/github-actions/.github/workflows/phpstan.yml@main
     with:
       extensionName: JeboehmAccessProtection
-      shopwareVersion: 6.5.x
+      shopwareVersion: 6.6.x
 
   zip:
     uses: shopware/github-actions/.github/workflows/build-zip.yml@main
