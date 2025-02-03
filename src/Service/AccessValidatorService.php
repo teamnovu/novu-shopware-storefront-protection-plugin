@@ -24,6 +24,11 @@ final class AccessValidatorService implements AccessValidatorInterface
             return true;
         }
 
+        // do not block store-api requests
+        if (str_starts_with($request->getPathInfo(), '/store-api')) {
+            return true;
+        }
+
         $allowedIps = $this->configValueRepository->getAllowedIps($salesChannelId);
         $clientIp = $request->getClientIp();
 
