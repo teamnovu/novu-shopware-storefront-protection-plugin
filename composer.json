@@ -1,5 +1,5 @@
 {
-    "name": "jeboehm/platform-access-protection",
+    "name": "teamnovu/novu-shopware-storefront-protection-plugin",
     "description": "Protects your Shopware 6 storefront from unauthorized access. Ideal for test systems.",
     "type": "shopware-platform-plugin",
     "version": "1.2.4",
@@ -7,6 +7,10 @@
         {
             "name": "Jeffrey Böhm",
             "homepage": "https://jeffrey-boehm.de"
+        },
+        {
+            "name": "teamnovu",
+            "homepage": "https://teamnovu.com"
         }
     ],
     "require": {
@@ -30,12 +34,8 @@
             "en-GB": "Ideal for test systems: this plugin protects the storefront from unauthorized access by requesting the credentials of a system user when a page is called up."
         },
         "manufacturerLink": {
-            "de-DE": "https://jeffrey-boehm.de",
-            "en-GB": "https://jeffrey-boehm.de"
-        },
-        "supportLink": {
-            "de-DE": "https://github.com/jeboehm/platform-access-protection/issues",
-            "en-GB": "https://github.com/jeboehm/platform-access-protection/issues"
+            "de-DE": "https://novu.ch",
+            "en-GB": "https://novu.ch"
         }
     },
     "config": {
