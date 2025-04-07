@@ -29,6 +29,10 @@ final class AccessValidatorService implements AccessValidatorInterface
             return true;
         }
 
+        if (str_starts_with($request->getPathInfo(), '/sitemap')) {
+            return true;
+        }
+
         $allowedIps = $this->configValueRepository->getAllowedIps($salesChannelId);
         $clientIp = $request->getClientIp();
 
